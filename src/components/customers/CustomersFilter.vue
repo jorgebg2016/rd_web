@@ -6,13 +6,13 @@
                     <CommonInput
                         name="name"
                         type="text"
-                        internal-label="Nome completo"
+                        :internal-label="$t('label.full_name')"
                     />
                     <CommonInput 
                         name="cpf"
                         mask="###.###.###-##"
                         type="text"
-                        internal-label="CPF"
+                        :internal-label="$t('label.document.cpf')"
                     />
                     <q-btn 
                         color="primary" 
@@ -20,7 +20,7 @@
                         form="filterCustomersForm" 
                         :dense="true"
                         icon="search" 
-                        label="Buscar"
+                        :label="$t('button.search')"
                         class="q-px-md"
                     />
                 </div>
@@ -30,7 +30,7 @@
 </template>
 
 <script setup lang="ts">
-import CommonInput from './inputs/CommonInput.vue';
+import CommonInput from '../inputs/CommonInput.vue';
 import type { IFilterCustomersData } from '@/types/customers';
 import { useForm } from 'vee-validate';
 import { object, string } from 'yup';

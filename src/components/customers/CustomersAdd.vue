@@ -2,7 +2,7 @@
     <q-dialog v-model="model" :persistent="true">
         <q-card style="width: 500px;">
             <q-card-section class="row justify-between" style="border-bottom: 1px solid whitesmoke">
-                <h6 style="color: black;">Adicionar Novo cliente</h6>
+                <h6 style="color: black;">{{ $t('info.customer.add')  }}</h6>
                 <q-btn @click="$emit('close')" flat :ripple="false" icon="close" rounded text-color="dark" style="padding: 2px 5px"/>
             </q-card-section>
             <q-card-section>
@@ -11,26 +11,26 @@
                         <CommonInput 
                             name="full_name"
                             class="col-12"
-                            label="Nome completo" 
+                            :label="$t('label.full_name')" 
                             type="text"
                         />
                         <CommonInput 
                             name="cpf"
                             class="col-12"
-                            label="CPF" 
+                            :label="$t('label.document.cpf')" 
                             mask="###.###.###-##"
                             type="text"
                         />
                         <CommonInput 
                             name="birthday"
                             class="col-12"
-                            label="Nascimento"
+                            :label="$t('label.birthday')" 
                             type="date"
                         />
                         <CommonInput 
                             name="phone"
                             class="col-12"
-                            label="Telefone" 
+                            :label="$t('label.phone')" 
                             mask="(##) #####-####"
                             type="text"
                         />
@@ -42,7 +42,7 @@
                     @click="$emit('close')" 
                     class="col shadow-1" 
                     :ripple="false" 
-                    label="Cancelar" 
+                    :label="$t('button.cancel')" 
                     text-color="dark" 
                 />
                 <q-btn 
@@ -51,7 +51,7 @@
                     :loading="loading"
                     class="col shadow-1" 
                     :ripple="false" 
-                    label="Salvar" 
+                    :label="$t('button.save')" 
                     color="primary" 
                     icon="save"
                 />
@@ -65,7 +65,7 @@ import type { ICustomerDataStore, IStoreCustomerErrors } from '@/types/customers
 import { useForm } from 'vee-validate';
 import { object, string } from 'yup';
 import { ref, watch } from 'vue';
-import CommonInput from './inputs/CommonInput.vue';
+import CommonInput from '../inputs/CommonInput.vue';
 
 const prop = withDefaults(
     defineProps<{
@@ -78,12 +78,14 @@ const prop = withDefaults(
     }
 );
 
-watch<IStoreCustomerErrors>(
+watch<IStoreCustomerErrors | undefined>(
   () => prop.validationErrors,
-  (previous, errors) => {
-    Object.keys(errors).forEach((key) => {
-        setFieldError(key, errors[key as keyof typeof errors]);
-    });
+  (errors) => {
+    if (errors) {
+        Object.keys(errors).forEach((key) => {
+            setFieldError(key, errors[key as keyof typeof errors]);
+        });
+    }
   }
 );
 

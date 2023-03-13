@@ -2,5 +2,33 @@
     "validations": {
         "default": "Campo inválido",
         "required": "O campo é obrigatório"
+    },
+    "label": {
+        "id": "ID",
+        "full_name": "Nome Completo",
+        "document": {
+            "cpf": "CPF"
+        },
+        "birthday": "Nascimento",
+        "phone": "Telefone",
+        "created_at": "Data de Cadastro",
+        "action": "Ação"
+    },
+    "info": {
+        "customer": {
+            "stored": "Clientes cadastrados",
+            "add": "Cadastrar novo cliente",
+            "remove": "Excluír cliente",
+            "destroy": "Tem certeza que deseja excluír o cliente {name}?"
+        }
+    },
+    "button": {
+        "save": "Salvar",
+        "destroy": "Excluír",
+        "search": "Buscar",
+        "cancel": "Cancelar"
+    },
+    "resource": {
+        "customer": "Cliente"
     }
 }

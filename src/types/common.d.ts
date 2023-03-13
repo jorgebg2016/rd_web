@@ -17,10 +17,11 @@ interface ITableProps {
     pagination: IPagination;
 }
 
-interface IActionProps<T = undefined> {
+interface IActionProps<Errors = undefined, ResourceRow = undefined> {
     loading?: boolean;
     successMessage?: string;
-    errors?: T;
+    errors?: Errors;
+    data?: ResourceRow;
 }
 
 export {

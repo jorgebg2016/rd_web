@@ -17,19 +17,19 @@
             <q-td key="birthday" :props="props">{{ qDate.formatDate(props.row.birthday, 'DD/MM/YYYY') }}</q-td>
             <q-td key="created_at" :props="props">{{ qDate.formatDate(props.row.created_at, 'DD/MM/YYYY HH:mm:ss') }}</q-td>
             <q-td key="action" :props="props">
-              <q-btn flat :ripple="false" icon="delete" rounded text-color="dark" style="padding: 2px 5px"/>
+              <q-btn @click="$emit('destroy', props.row)" flat :ripple="false" icon="delete" rounded text-color="dark" style="padding: 2px 5px"/>
             </q-td>
           </q-tr>
         </template>
         <template #top>
           <div class="row justify-between items-center" style="width: 100%">
-            <h6 class="title">Clientes Cadastrados</h6>
+            <h6 class="title">{{ $t('info.customer.stored') }}</h6>
             <q-btn 
               icon="add" 
               color="primary"
               style="color: white;"
               @click="$emit('add')"
-              label="Cliente"
+              :label="$t('resource.customer')"
             />
           </div>
         </template>
@@ -48,7 +48,7 @@
 
 <script setup lang="ts">
 import type { IPagination, IPaginationResponse } from '@/types/common';
-import type { IFilterCustomersResponse } from '@/types/customers';
+import type { ICustomerRow, IFilterCustomersResponse } from '@/types/customers';
 import type { QTableProps } from 'quasar';
 import { toRef, ref } from 'vue';
 import { date as qDate } from 'quasar';
@@ -76,6 +76,7 @@ function preparePagination(page: number): IPagination {
 defineEmits<{
   (e: 'add'): void;
   (e: 'paginate', value: IPagination): void;
+  (e: 'destroy', data: ICustomerRow): void;
 }>();
 </script>
 
