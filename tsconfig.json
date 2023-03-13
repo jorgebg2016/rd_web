@@ -1,5 +1,8 @@
 {
   "files": [],
+  "compilerOptions": {
+    "types": ["@intlify/unplugin-vue-i18n/messages"]
+  },
   "references": [
     {
       "path": "./tsconfig.node.json"

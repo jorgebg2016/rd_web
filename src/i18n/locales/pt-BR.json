@@ -1,0 +1,6 @@
+{
+    "validations": {
+        "default": "Campo inválido",
+        "required": "O campo é obrigatório"
+    }
+}
